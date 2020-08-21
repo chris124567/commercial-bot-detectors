@@ -2,7 +2,7 @@
 
 This repository contains JavaScript code of many commercial bot detectors/fingerprinting services and string deobfuscators for them if applicable.  
 
-List of included scripts ("deobfuscated" refers to string deobfuscation.  This is useful for seeing what browser attributes they are looking for.  I did not undo any sort of control flow deobfuscation):
+List of included scripts ("deobfuscated" refers to string deobfuscation.  This is useful for seeing what browser attributes they are looking for.  I did not undo any sort of control flow obfuscation):
 
 * AddThis
 * Ad-Maven
