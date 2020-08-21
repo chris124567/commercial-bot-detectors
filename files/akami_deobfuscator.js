@@ -38,5 +38,5 @@ console.log("/* Replaced all array references with real value */")
 refactor.expandBoolean();
 // refactor.convertComputedToStatic();
 refactor.normalizeIdentifiers();
-console.log("/* This file is the result of running `node datadome_deobfuscator.js > datadome_deobfuscated.js` */");
+console.log("/* This file is the result of running `node akami_deobfuscator.js > akami_deobfuscated.js` */");
 console.log(refactor.print());
