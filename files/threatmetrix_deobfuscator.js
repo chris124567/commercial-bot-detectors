@@ -45,6 +45,10 @@ td_3i.td_0w = function (td_l) {
 };
 /* End copied string deobfuscation functions */
 
+// get deobfuscation object
+// const deobfuscationObject = script.query(`VariableDeclarator[init.type="BinaryExpression"][init.left.type="IdentifierExpression"][init.operator="||"][init.right.type="ObjectExpression"][init.right.properties.length=0]`).first()
+// const deobfuscationObjectName = deobfuscationObject.nodes[0].binding.name;
+// console.log(deobfuscationObjectName);
 
 /*
 They employ this obfuscation (on small strings) where they do Number(xxx).toString(radixAmount).
@@ -107,9 +111,5 @@ refactor.replaceRecursive(
   }
 )
 
-refactor.expandBoolean();
-refactor.convertComputedToStatic();
-refactor.normalizeIdentifiers();
-refactor.cleanup();
 console.log("/* This file is the result of running `node threatmetrix_deobfuscator.js > threatmetrix_deobfuscated.js` */");
 console.log(refactor.print());

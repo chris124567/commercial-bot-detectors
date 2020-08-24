@@ -112,11 +112,26 @@ function c(n) {
     throw new TypeError(f("oOnO1sHMycSAwdTUxc3Q1IDUz4DT0NLFwcSAzs/OjcnUxdLBwszFgMnO09TBzsPF"));
   }();
 }
-
-
 /*
 End copied string deobfuscation functions
 */
+
+function padWithLeadingZeros(string) {
+    return new Array(5 - string.length).join("0") + string;
+}
+
+function unicodeCharEscape(charCode) {
+    return "\\u" + padWithLeadingZeros(charCode.toString(16));
+}
+
+function unicodeEscape(string) {
+    return string.split("")
+                 .map(function (char) {
+                     var charCode = char.charCodeAt(0);
+                     return charCode > 127 ? unicodeCharEscape(charCode) : char;
+                 })
+                 .join("");
+}
 
 /*
 Replace ot calls with real values
@@ -126,7 +141,7 @@ refactor.replaceRecursive(
 
   node => {
     return new Shift.LiteralStringExpression({
-      value: ot(node.arguments[0].value)
+      value: unicodeEscape(ot(node.arguments[0].value))
     })
   }
 );
@@ -140,7 +155,7 @@ refactor.replaceRecursive(
 
   node => {
     return new Shift.LiteralStringExpression({
-      value: f(node.arguments[0].value)
+      value: unicodeEscape(f(node.arguments[0].value))
     })
   }
 );
@@ -154,7 +169,7 @@ refactor.replaceRecursive(
 
   node => {
     return new Shift.LiteralStringExpression({
-      value: f(node.arguments[0].value)
+      value: unicodeEscape(f(node.arguments[0].value))
     })
   }
 );
@@ -168,7 +183,7 @@ refactor.replaceRecursive(
 
   node => {
     return new Shift.LiteralStringExpression({
-      value: f(node.arguments[0].value)
+      value: unicodeEscape(f(node.arguments[0].value))
     })
   }
 );
@@ -185,7 +200,7 @@ refactor.replace(
     var query = `VariableDeclarator[init.type="IdentifierExpression"][init.name="f"][binding.name="` + functionName + `"]`;
     if (refactor.query(query).length > 0) {
         return new Shift.LiteralStringExpression({
-          value: f(node.arguments[0].value)
+          value: unicodeEscape(f(node.arguments[0].value))
         })        
     }
     else {
@@ -206,7 +221,7 @@ refactor.replace(
     var query = `VariableDeclarator[init.type="IdentifierExpression"][init.name="r"][binding.name="` + functionName + `"]`;
     if (refactor.query(query).length > 0) {
         return new Shift.LiteralStringExpression({
-          value: f(node.arguments[0].value)
+          value: unicodeEscape(f(node.arguments[0].value))
         })        
     }
     else {
@@ -217,8 +232,8 @@ refactor.replace(
 console.log("/* Replaced r referenced calls with real values */")
 
 
-refactor.expandBoolean();
-refactor.normalizeIdentifiers();
+// refactor.expandBoolean();
+// refactor.normalizeIdentifiers();
 // refactor.convertComputedToStatic();
 
 console.log("/* This file is the result of running `node perimeterx_deobfuscator.js > perimeterx_deobfuscated.js` */");

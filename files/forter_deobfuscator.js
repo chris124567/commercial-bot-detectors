@@ -153,11 +153,11 @@ refactor.replace(
         return node;
     }
 );
-console.log("/* Done replacing variable references with values */")
-for (var i = 0; i < replacedVariablesQueries.length; i++) {
-    refactor.delete(replacedVariablesQueries[i]);
-}
-console.log("/* Done deleting original variable declarations */")
+// console.log("/* Done replacing variable references with values */")
+// for (var i = 0; i < replacedVariablesQueries.length; i++) {
+//     refactor.delete(replacedVariablesQueries[i]);
+// }
+// console.log("/* Done deleting original variable declarations */")
 
 /*
 Combine strings that are assembled by addition ("a" + "b" + ...)
