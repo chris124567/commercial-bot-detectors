@@ -32,7 +32,6 @@ List of included scripts ("deobfuscated" refers to string deobfuscation.  This i
 * FingerprintJS Commercial
 * Forter (deobfuscated)
 * Fraudmetrix (deobfuscated - partially)
-* Geocomply (deobfuscated)
 * Giveaway Spam found in Google (deobfuscated)
 * Javascript loaded on Google.com
 * Google Botguard (no deobfuscation progress)
